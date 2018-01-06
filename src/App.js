@@ -5,9 +5,9 @@ import Person from './person/person';
 class App extends Component {
   state = {
     person: [
-      {name: 'Katze', age: 'gato'},
-      {name: 'siba', age: 'blue'},
-      {name: 'pug', age: 'pink'}
+      {id:'01', name: 'Katze', age: 'gato'},
+      {id:'02', name: 'siba', age: 'blue'},
+      {id:'03', name: 'pug', age: 'pink'}
     ],
     otherState: 'some one',
     showPerson: false
@@ -37,6 +37,7 @@ class App extends Component {
 
   deletePersonHandler = (personIndex) => {
     const persons = this.state.person;
+    // console.log('persons: ', persons);
     persons.splice(personIndex,1);
     this.setState({person:persons});
   }
@@ -62,7 +63,8 @@ class App extends Component {
         <div>
           {this.state.person.map((person, index) => {
             return <Person 
-            clicks={() => this.deletePersonHandler(index)}
+              clicks={() => this.deletePersonHandler(index)}
+              key={person.id}
               name={person.name} 
               age={person.age}/>
           })}
